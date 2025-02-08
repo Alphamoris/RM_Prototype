@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import EditorJS, { OutputData } from '@editorjs/editorjs';
+import EditorJS, { BlockToolConstructable, OutputData } from '@editorjs/editorjs';
 
 // Import tools
 import Header from '@editorjs/header';
@@ -20,7 +20,7 @@ interface EditorProps {
   readOnly?: boolean;
 }
 
-const EDITOR_TOOLS = {
+const EDITOR_TOOLS: { [toolName: string]: unknown } = {
   header: {
     class: Header,
     config: {
@@ -62,12 +62,10 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
   const editorRef = useRef<EditorJS | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize editor
   useEffect(() => {
     if (!containerRef.current) return;
 
     const initEditor = async () => {
-      // Cleanup previous instance
       if (editorRef.current) {
         try {
           await editorRef.current.isReady;
@@ -80,9 +78,9 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
 
       try {
         const editor = new EditorJS({
-          holder: containerRef.current!,
-          tools: EDITOR_TOOLS,
-          data: initialData || undefined,
+          holder: containerRef.current ?? undefined,
+          tools: EDITOR_TOOLS as { [toolName: string]: BlockToolConstructable },
+          data: initialData ?? undefined,
           readOnly,
           placeholder: 'Start writing your blog post...',
           inlineToolbar: true,
@@ -97,7 +95,6 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
             }
           },
           onReady: () => {
-            // Add custom styles
             const style = document.createElement('style');
             style.textContent = `
               .codex-editor {
@@ -153,6 +150,8 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
                 color: #1f2937 !important;
                 line-height: 1.3 !important;
               }
+              Here is the remaining code:
+TypeScript
               h3.ce-header {
                 font-size: 1.5rem !important;
                 font-weight: 600 !important;
@@ -280,6 +279,8 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
     <div className="relative w-full">
       <div 
         className={`
+          Here is the remaining code:
+TypeScript
           relative min-h-[500px] w-full bg-white rounded-lg border border-gray-200 overflow-hidden
           ${readOnly ? 'cursor-not-allowed opacity-75' : 'hover:border-teal-500 focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20'}
         `}

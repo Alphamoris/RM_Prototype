@@ -40,10 +40,11 @@ export default function BlogUpload() {
   const [currentTag, setCurrentTag] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewMode, setPreviewMode] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof BlogPost, string>>>({});
+  type ErrorType = Partial<Record<keyof BlogPost, string>> & { submit?: string };
+  const [errors, setErrors] = useState<ErrorType>({});
 
   const validateForm = useCallback(() => {
-    const newErrors: Partial<Record<keyof BlogPost, string>> = {};
+    const newErrors: ErrorType = {};
     
     if (!post.title.trim()) {
       newErrors.title = 'Title is required';
@@ -264,6 +265,7 @@ export default function BlogUpload() {
                         unoptimized={post.coverImage.startsWith('data:')} // For data URLs
                       />
                       <button
+                        aria-label="Remove cover image"
                         type="button"
                         onClick={() => setPost(prev => ({ ...prev, coverImage: null }))}
                         className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
