@@ -13,10 +13,7 @@ const Editor = dynamic(() => import('@/components/Editor'), {
   )
 });
 
-
-
 type BlogCategory = 'technology' | 'finance' | 'business' | 'lifestyle' | 'other';
-
 
 interface BlogPost {
   title: string;
