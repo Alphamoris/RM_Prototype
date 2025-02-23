@@ -112,18 +112,7 @@ export default function Editor({ onChange, initialData, readOnly = false }: Edit
                 max-width: none !important;
                 position: relative !important;
               }
-              .cdx-block {
-                max-width: none !important;
-              }
-              .ce-paragraph {
-                font-size: 1.125rem !important;
-                line-height: 1.75 !important;
-                color: #1f2937 !important;
-                font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-                padding: 0.5rem 0 !important;
-                margin: 0 !important;
-                position: relative !important;
-              }
+             
               .ce-block {
                 margin: 0 !important;
                 position: relative !important;
