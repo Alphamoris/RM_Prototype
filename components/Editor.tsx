@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import EditorJS, { BlockToolConstructable, OutputData } from '@editorjs/editorjs';
-
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Code from '@editorjs/code';
