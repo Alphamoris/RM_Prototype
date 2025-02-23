@@ -76,6 +76,7 @@ export default function BlogUpload() {
       setCurrentTag('');
     }
   };
+  
 
   const removeTag = (tagToRemove: string) => {
     setPost(prev => ({
