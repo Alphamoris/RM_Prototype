@@ -15,16 +15,6 @@ const Editor = dynamic(() => import('@/components/Editor'), {
 
 type BlogCategory = 'technology' | 'finance' | 'business' | 'lifestyle' | 'other';
 
-interface BlogPost {
-  title: string;
-  content: OutputData | null;
-  excerpt: string;
-  category: BlogCategory;
-  tags: string[];
-  coverImage: string | null;
-  status: 'draft' | 'published';
-  publishDate?: Date;
-}
 
 export default function BlogUpload() {
   const [post, setPost] = useState<BlogPost>({
