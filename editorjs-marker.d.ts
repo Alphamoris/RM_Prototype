@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 declare module '@editorjs/marker' {
     import { IBlockTool, IBlockToolConstructor } from '@editorjs/editorjs';
   
